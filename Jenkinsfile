@@ -22,7 +22,15 @@ pipeline {
                          sh 'node ./frontend/test.js'
                       }
                    }
-              }
-          }
-      }
-}
+                }
+             }
+             stage('Deploy') {
+                when {
+                  expresion { env-GIT_BRANCH == 'origin/main' }
+                }
+                steps {
+                  echo 'Deploying...'
+                }   
+             }   
+        }
+} 
